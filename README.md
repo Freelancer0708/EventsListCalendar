@@ -1,4 +1,6 @@
 # EventsListCalendar
+URL: https://events-list-calendar.vercel.app/ <br>
+Privacy Policy: https://events-list-calendar.vercel.app/privacy-policy
 
 ## 使用技術
 
