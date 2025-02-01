@@ -18,6 +18,7 @@ export default function RootLayout({
     <html lang="ja">
       <head>
         <title>イベントカレンダーリスト</title>
+        <meta name="google-site-verification" content="Gl5cp_6G9iSp1mvgzSIbjuRSvrAjRFe17iSHW1iP0ws" />
       </head>
       <body className={`${notoSansJP.variable}`}>
         <main>
