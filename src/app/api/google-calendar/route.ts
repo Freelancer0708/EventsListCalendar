@@ -1,13 +1,12 @@
 import { google } from "googleapis";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
-import { NextRequest, NextResponse } from "next/server";
+import { authOptions } from "../auth/options"; // ✅ options.ts からインポート
+import { NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   const session = await getServerSession(authOptions);
-
   if (!session || !session.accessToken) {
-    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    return NextResponse.json({ error: "Unauthorized: No Access Token" }, { status: 401 });
   }
 
   try {
@@ -18,9 +17,9 @@ export async function GET(req: NextRequest) {
 
     const response = await calendar.events.list({
       calendarId: "primary",
-      timeMin: new Date().toISOString(), // 現在時刻から
-      timeMax: new Date(new Date().setMonth(new Date().getMonth() + 2)).toISOString(), // 2か月後まで
-      maxResults: 200, // 必要に応じて調整可能
+      timeMin: new Date().toISOString(),
+      timeMax: new Date(new Date().setMonth(new Date().getMonth() + 2)).toISOString(),
+      maxResults: 100,
       singleEvents: true,
       orderBy: "startTime",
     });
